@@ -17,6 +17,10 @@
 
 goboxd is an HTTP service written in Go that compiles and runs untrusted code inside isolated sandboxes and returns the result. Optional test cases can be supplied to assert behaviour against expected output. It is built for safe execution of code across many languages, with strict isolation, bounded concurrency, and a plug and play language registry.
 
+## Architecture & Framework Justification
+
+goboxd uses Go's standard `net/http` library for routing. The standard library is sufficient for this project's simple API footprint and prevents the overhead of introducing third-party framework dependencies.
+
 ## Features
 
 - Plug and play language registry driven by YAML
@@ -37,34 +41,6 @@ No Go toolchain or system dependencies are required on the host. Everything runs
 ### Installation
 
 ```sh
-git clone https://github.com/thesouldev/goboxd.git
+git clone [https://github.com/thesouldev/goboxd.git](https://github.com/thesouldev/goboxd.git)
 cd goboxd
 make build
-```
-
-### Usage
-
-```sh
-make run          # start the service on :8080
-make test         # run unit tests
-make integration  # run end to end tests
-make lint         # run static analysis
-```
-
-## Project structure
-
-```
-.
-├── cmd/goboxd/   binary entry point
-├── internal/     private application packages
-├── docs/         api, languages, security, benchmarks, architecture
-└── tests/        integration tests
-```
-
-## Contributing
-
-Contributions are welcome. Open an issue to discuss substantial changes before sending a pull request.
-
-## License
-
-This project is distributed under the GNU General Public License v3.0. See [LICENSE](LICENSE) for the full text.
